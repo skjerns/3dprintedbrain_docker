@@ -33,9 +33,10 @@ sh create_3d_brain.sh subjectname.nii.gz
 Inside WSL, run the following commands to install Freesurfer
 
 ```shell
-wget https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/dev/freesurfer_7-dev_amd64.deb
+# url might change, let me know if this is the case
+wget https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/dev/freesurfer_ubuntu18-7-dev_amd64.deb
 sudo apt-get update
-sudo apt-get --yes install ./freesurfer_7-dev_amd64.deb
+sudo apt-get --yes install ./freesurfer_ubuntu18-7-dev_amd64.deb
 echo "export FREESURFER_HOME=/usr/local/freesurfer/7-dev" >> $HOME/.bashrc
 echo "export FS_LICENSE=$HOME/license.txt" >> $HOME/.bashrc
 echo "source /usr/local/freesurfer/7-dev/SetUpFreeSurfer.sh" >> $HOME/.bashrc
