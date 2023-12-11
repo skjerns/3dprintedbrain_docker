@@ -2,7 +2,7 @@
 
 # 3D print your brain using Docker
 
-This is an updated version of [miykael/3dprintyourbrain](https://github.com/miykael/3dprintyourbrain) adapted to work using Docker. This should make the process as reproducible as possible. If everything goes well, you just need to build the Dockerfile and then run a the command with the NIFTI image and will get a readily reconstructed STL mesh for 3D printing.
+This is an updated version of [miykael/3dprintyourbrain](https://github.com/miykael/3dprintyourbrain) adapted to work using Docker. This should make the process as reproducible as possible. If everything goes well, you just need to build the Dockerfile and then run a the command with the NIFTI image and will get a readily reconstructed STL mesh for 3D printing. The previous version of this README using WSL2 for Windows can be found [here](./README_wsl_version.md).
 
 --- work in progress ---
 
@@ -38,13 +38,9 @@ Follow the instructions here to install Docker for your system (if not already i
 
 #### 1.2 Clone the repository
 
-
-
 Last but not least, insert your FreeSurfer license file inside the repository directory.
 
 #### 1.3 Build the docker image
-
-
 
 #### 1.2 Install FreeSurfer in Ubuntu
 
