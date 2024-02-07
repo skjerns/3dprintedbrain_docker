@@ -1,28 +1,22 @@
-# Use Freesurfer 7.4.1 as the base image
+# Use freesurfer the base image
 FROM freesurfer/freesurfer:7.4.1
 
-# Install dependencies for Meshlab
-RUN apt-get update && apt-get install -y \
-    software-properties-common \
-    && add-apt-repository ppa:zarquon42/meshlab \
-    && apt-get update
+# Copy your custom script into the container
+COPY ./create_3d_brain_docker.sh /opt/create_3d_brain_docker.sh
+COPY ./post_process_mesh.py /opt/post_process_mesh.py
+COPY ./license.txt /usr/local/freesurfer/license.txt
 
-# Install Meshlab
-RUN apt-get install -y meshlab
+# install python and PyMeshLab
+RUN yum install -y python3-pip
+RUN pip3 install pymeshlab==2021.10
 
-# Copy the script file into the image
-COPY create_3d_brain.sh /usr/local/bin/create_3d_brain.sh
-COPY meshlab_close_decimate.mlx /usr/local/bin/meshlab_close_decimate.mlx
-COPY meshlab_smoothing.mlx /usr/local/bin/meshlab_smoothing.mlx
-COPY license.txt /usr/local/freesurfer/license.txt
+# Set the working directory
+WORKDIR /opt
 
-# Make the script executable
-RUN chmod +x /usr/local/bin/create_3d_brain.sh
+#Make your custom script executable (if needed)
+RUN ["chmod", "+x", "/opt/create_3d_brain_docker.sh"]
 
-# Set environment variables
-ENV FREESURFER_HOME=/usr/local/freesurfer
-ENV MESHLAB_HOME=/path/to/meshlab
-ENV PATH=$FREESURFER_HOME:$MESHLAB_HOME:$PATH
+# Define the entry point for your container
+ENTRYPOINT ["/opt/create_3d_brain_docker.sh"]
 
-# Entry point (optional)
-ENTRYPOINT ["/usr/local/bin/create_3d_brain.sh"]
+
