@@ -1,19 +1,31 @@
 #!/bin/bash -e
 # 3dprintyourbrain, adapted script by skjerns, original by miykael
-# usage: create_3d_brain.sh subject_name.nii.gz
+# usage: create_3d_brain_docker.sh subject_name.nii.gz
 ###############################################
+set -e  # exit on error
 
-######### settings that you might need to adapt ########
-# Path to meshlabserver 
-export MESHLAB_SERVER="/mnt/c/Program Files/VCG/MeshLab/meshlabserver.exe"
-######### end of settings
-
-set -e -v # exit on error
 
 export FSLOUTPUTTYPE=NIFTI_GZ
 # Main folder for the whole project
-export subjT1=$1 # the NIFTI file
+if [ -f "$1" ]; then
+    subjT1="$1"
+# Else check if it exists in the 'share' subdirectory
+elif [ -f "/opt/share/$1" ]; then
+    subjT1="/opt/share/$1"
+else
+    echo "Error: File $1 not found in current directory or share/$1"
+    exit 1
+fi
+echo
+echo "-----------------------------------------------"
+echo "STARTING RECONSTRUCTION, CAN TAKE SEVERAL HOURS"
+echo "-----------------------------------------------"
+echo
+sleep 3
 
+start_time=$(date +%s)
+
+export subjT1
 export MAIN_DIR=$HOME/3dbrains
 
 # Name of the subject
@@ -79,26 +91,20 @@ mri_tessellate $SUBJECTS_DIR/subcortical/subcortical_bin.nii.gz 1 $SUBJECTS_DIR/
 # Ninth, convert binary surface output into stl format
 mris_convert $SUBJECTS_DIR/subcortical/subcortical $SUBJECTS_DIR/subcortical.stl
 
+# last, apply preprocessing by smoothing and combining the meshes
+# and decimating to 290.000 vertices (tinkercad limit is 300.000)
+python3 /opt/post_process_mesh.py $SUBJECTS_DIR
 
-"$MESHLAB_SERVER" -i $SUBJECTS_DIR/subcortical.stl -o $SUBJECTS_DIR/subcortical.stl -m sa -s smoothing.mlx
-"$MESHLAB_SERVER" -i $SUBJECTS_DIR/cortical.stl -o $SUBJECTS_DIR/cortical.stl -m sa -s smoothing.mlx
-
-#==========================================================================================
-#4. Combine Cortical and Subcortial 3D Models
-#==========================================================================================
-
-echo 'solid '$SUBJECTS_DIR'/final.stl' > $SUBJECTS_DIR/final.stl
-sed '/solid vcg/d' $SUBJECTS_DIR/cortical.stl >> $SUBJECTS_DIR/final.stl
-sed '/solid vcg/d' $SUBJECTS_DIR/subcortical.stl >> $SUBJECTS_DIR/final.stl
-echo 'endsolid '$SUBJECTS_DIR'/final.stl' >> $SUBJECTS_DIR/final.stl
+cp $SUBJECTS_DIR/final.stl /opt/share/$subject.stl
 
 #==========================================================================================
 # Cleanup
 #==========================================================================================
 rm -R -- $SUBJECTS_DIR/*/
 rm $SUBJECTS_DIR/logfile
-
-#==========================================================================================
-#5. ScaleDependent Laplacian Smoothing, create a smoother surface: MeshLab
-#==========================================================================================
-"$MESHLAB_SERVER" -i $SUBJECTS_DIR/final.stl -o $SUBJECTS_DIR/final.stl -s close_decimate.mlx
+end_time=$(date +%s)
+elapsed_time=$((end_time - start_time))
+formatted_time=$(printf "%02d:%02d:%02d" $((elapsed_time/3600)) $((elapsed_time%3600/60)) $((elapsed_time%60)))
+echo
+echo "n---------------------------------"
+echo "Finished after $formatted_time. Output can be found at $subject.stl"
