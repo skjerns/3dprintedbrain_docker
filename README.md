@@ -4,9 +4,19 @@
 
 This is an updated version of [miykael/3dprintyourbrain](https://github.com/miykael/3dprintyourbrain) adapted to work using Docker. This should make the process as reproducible as possible. If everything goes well, you just need to build the Dockerfile and then run a the command with the NIFTI image and will get a readily reconstructed STL mesh for 3D printing. The previous version of this README using WSL2 for Windows can be found [here](./README_wsl_version.md).
 
-### Instructions
+The actual process is as simple as building a docker image and running ``docker run -it -v ./:opt/share 3dprintedbrain subject.nii``
 
-#### 1. Install Docker
+**Prerequisites**:
+
+- Docker client installed
+
+- Freesurfer license (it's free)
+
+- T1 MRI ofd your brain in NIFTI Format (.nii or .nii.gz)
+
+# Instructions
+
+## 1. Install Docker
 
 Follow the instructions here to install Docker for your system (if not already installed). It is available for all major operating system.
 
@@ -16,17 +26,19 @@ Follow the instructions here to install Docker for your system (if not already i
 
 * [Install Docker Desktop on Linux](https://docs.docker.com/desktop/install/linux-install/)
 
-#### 2. Clone the repository and build docker image
+## 2. Clone the repository and build docker image
 
 Clone this repository by running
 
 `git clone git@github.com:skjerns/3dprintedbrain_docker.git`
 
-Navigate into the newly cloned repository and build the docker image by running the following command
+Then put your freesurfer license in the cloned repository. You can get the `license.txt` for free at [FreeSurfer Registration form](https://surfer.nmr.mgh.harvard.edu/registration.html).
+
+Navigate into the newly cloned repository and build the docker image by running the following command. 
 
 `docker build --tag 3dprintedbrain .`
 
-#### 3. Convert NIFTI to STL
+## 3. Run extraction step
 
 Put your `subject.nii` or `subject.nii.gz` file into the cloned repository. If your data is in DICOM format, you can easily convert it using `dcm2nii`. A .nii is a NIFTI File that contains all the brain data of a participant.
 
