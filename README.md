@@ -4,15 +4,17 @@
 
 This is an updated version of [miykael/3dprintyourbrain](https://github.com/miykael/3dprintyourbrain) adapted to work using Docker. This should make the process as reproducible as possible. If everything goes well, you just need to build the Dockerfile and then run a the command with the NIFTI image and will get a readily reconstructed STL mesh for 3D printing. The previous version of this README using WSL2 for Windows can be found [here](./README_wsl_version.md).
 
-The actual process is as simple as building a docker image and running ``docker run -it -v ./:opt/share 3dprintedbrain subject.nii``
+The actual process is as simple as building a docker image and running 
+
+`docker run -it -v ./:opt/share 3dprintedbrain subject.nii`
 
 **Prerequisites**:
 
-- Docker client installed
+- [Docker](https://www.docker.com/products/docker-desktop/) client installed
 
-- Freesurfer license (it's free)
+- Freesurfer license (it's [free](https://surfer.nmr.mgh.harvard.edu/registration.html))
 
-- T1 MRI ofd your brain in NIFTI Format (.nii or .nii.gz)
+- [T1 MRI](https://en.wikipedia.org/wiki/Magnetic_resonance_imaging_of_the_brain) of your brain in NIFTI format (.nii or .nii.gz)
 
 # Instructions
 
