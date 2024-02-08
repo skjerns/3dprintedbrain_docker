@@ -1,4 +1,4 @@
-<img title="" src="./md_assets/3a5b470407b7d8dcfb1e6cfee7a785ca425898a8.jpg" alt="2021-09-11 10.44.37.jpg" width="203" data-align="left">
+<img title="" src="md_images_README/2efa073ae1febbac075f02acdfe2260b49f12e63.png" alt="2021-09-11 10.44.37.jpg" width="493" data-align="left">
 
 # 3D print your brain using Docker
 
@@ -55,8 +55,6 @@ This will run the script that automatically runs `recon-all` and extracts the br
 
 As a final result, there should be a `subject.stl` in your cloned repository folder which you can 3D print!
 
-
-
 ## 4. Print the stand and connect to the Brain
 
 1. I use small metal rods  to connect the [stand](https://github.com/skjerns/3dprintyourbrain/blob/master/stand.stl) and the brain. Just find one in your local DIY store, 2mm is good. For a beginning you can also sacrifice a fork and break off a fork tine and use that as a connector. Then you can either drill holes for connection or model them directly into the 3D model. Just connecting it via PLA (3D print) will not work, as it's not stable enough. Neither can you print the entire thing at once, you need to print the stand and brain separately for stability.
@@ -68,4 +66,5 @@ If you have further questions, feel free to open an issue. Connecting the stand 
 <img src="./md_assets/d0b4d2576c06abc6906e0ea98ce6b0b75e08e493.jpg" title="" alt="2021-09-11 09.13.41.jpg" width="367">
 
 ## appendix
+
 (The previous version of this README using WSL2 for Windows can be found [here](./README_wsl_version.md))
