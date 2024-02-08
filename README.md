@@ -1,4 +1,4 @@
-<img title="" src="md_images_README/2efa073ae1febbac075f02acdfe2260b49f12e63.png" alt="2021-09-11 10.44.37.jpg" width="493" data-align="left">
+<img title="" src="md_assets/3a5b470407b7d8dcfb1e6cfee7a785ca425898a8.png" alt="2021-09-11 10.44.37.jpg" width="493" data-align="left">
 
 # 3D print your brain using Docker
 
