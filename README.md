@@ -45,7 +45,7 @@ Navigate into the newly cloned repository and build the docker image by running 
 
 ## 3. Run extraction step
 
-Put your `subject.nii` or `subject.nii.gz` file into the cloned repository. If your data is in DICOM format, you can easily convert it using the provided [`dcm2niigui.exe` ](./blob/master/dcm2niigui.exe)`dcm2niix` or any other [tool](https://www.google.com/search?q=convert+dicom+to+nifti). A .nii is a NIFTI File that contains all the brain data of a participant.
+Put your `subject.nii` or `subject.nii.gz` file into the cloned repository. If your data is in DICOM format, you can easily convert it using the provided [`dcm2niigui.exe` ](./dcm2niigui.exe) or [`dcm2niix`](https://www.google.com/search?q=dcm2niix) or any other [tool](https://www.google.com/search?q=convert+dicom+to+nifti). NIFTI files contain all the brain data of a participant in one file.
 
 Now simply run
 
