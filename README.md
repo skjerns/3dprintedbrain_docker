@@ -2,7 +2,7 @@
 
 # 3D print your brain using Docker
 
-This is an updated version of [miykael/3dprintyourbrain](https://github.com/miykael/3dprintyourbrain) adapted to work using Docker. You just need to build the Docker image and then run a command with the NIFTI file of a participant and will get a readily reconstructed STL mesh for 3D printing.
+A Docker image to create readily 3D-printable brains from T1 MRI scans. You just need to build the Docker image and then run a command with the NIFTI file of a participant and will get a readily reconstructed STL mesh for 3D printing. This is an updated & extended version of [miykael/3dprintyourbrain](https://github.com/miykael/3dprintyourbrain) adapted to work using Docker. 
 
 The actual process is as simple as running these two commands 
 
