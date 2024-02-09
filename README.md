@@ -68,16 +68,13 @@ If you have further questions, feel free to open an issue. Connecting the stand 
 ## Q&A
 
 1) I'm getting the error `COPY failed: file not found in build context or excluded by .dockerignore: stat license.txt: file does not exist`?
-
- get your personal Freesurfer license (for free) at https://surfer.nmr.mgh.harvard.edu/registration.html and put it into the repository
+   - get your personal Freesurfer license (for free) at https://surfer.nmr.mgh.harvard.edu/registration.html and put it into the repository
 
 2) My file is ending in .nii.gz , how do I get the .nii file?
-
- you can simply use the .nii.gz file, no problem. it's just a zipped format of the .nii
+   - you can simply use the .nii.gz file, no problem. it's just a zipped format of the .nii
 
 3) I don't want the mesh to be decimated that much / smoothed that much, I want the raw brain as it is reconstructed!
-     - you can edit the smoothing and decimating parameters in the `post_process_mesh.py`. Simply remove the filters that you don't want to use such as decimation and smoothing.
+   - you can edit the smoothing and decimating parameters in the `post_process_mesh.py`. Simply remove the filters that you don't want to use such as decimation and smoothing.
 
 4) Wasn't there a version using WSL2 for windfows?
-   
-- The previous version of this README using WSL2 for Windows can be found [here](./README_wsl_version.md)
+   - The previous version of this README using WSL2 for Windows can be found [here](./README_wsl_version.md)
