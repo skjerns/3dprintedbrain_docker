@@ -65,6 +65,16 @@ If you have further questions, feel free to open an issue. Connecting the stand 
 
 <img src="./md_assets/d0b4d2576c06abc6906e0ea98ce6b0b75e08e493.jpg" title="" alt="2021-09-11 09.13.41.jpg" width="367">
 
-## appendix
+## Q&A
 
-(The previous version of this README using WSL2 for Windows can be found [here](./README_wsl_version.md))
+1) I'm getting the error `COPY failed: file not found in build context or excluded by .dockerignore: stat license.txt: file does not exist`?
+
+- get your personal Freesurfer license (for free) at https://surfer.nmr.mgh.harvard.edu/registration.html and put it into the repository
+
+2) My file is ending in .nii.gz , how do I get the .nii file?
+
+- you can simply use the .nii.gz file, no problem. it's just a zipped format of the .nii
+
+3) Wasn't there a version using WSL2 for windfows?
+   
+- The previous version of this README using WSL2 for Windows can be found [here](./README_wsl_version.md)
