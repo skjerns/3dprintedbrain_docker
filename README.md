@@ -8,7 +8,7 @@ The actual process is as simple as running these two commands
 
 ```bash
 docker build --tag 3dprintedbrain .
-docker run -it -v ./:opt/share 3dprintedbrain subject.nii
+docker run -it -v ./:/opt/share 3dprintedbrain subject.nii
 ```
 
 **Prerequisites**:
@@ -49,7 +49,7 @@ Put your `subject.nii` or `subject.nii.gz` file into the cloned repository. If y
 
 Now simply run
 
-`docker run -it -v ./:opt/share 3dprintedbrain subject.nii`
+`docker run -it -v ./:/opt/share 3dprintedbrain subject.nii`
 
 This will run the script that automatically runs `recon-all` and extracts the brain structures, then smoothes them and puts them into one `subject.stl`. This process will take a couple of hours usually.
 
