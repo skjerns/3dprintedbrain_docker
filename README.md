@@ -79,7 +79,6 @@ If you have further questions, feel free to open an issue. Connecting the stand 
 
 ## Q&A
 
->>>>>>> e496e83b770e4d5e1f14b6d720a7dacc1cea1cc4
 1) I'm getting the error `COPY failed: file not found in build context or excluded by .dockerignore: stat license.txt: file does not exist`?
    - get your personal Freesurfer license (for free) at https://surfer.nmr.mgh.harvard.edu/registration.html and put it into the repository
 
