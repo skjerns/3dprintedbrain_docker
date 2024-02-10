@@ -77,9 +77,9 @@ So far I printed everything using http://treatstock.co.uk at 45% size, which is 
 If you have further questions, feel free to open an issue. Connecting the stand to the brain is the most fidgety of all the steps in the guide and requires some trying out yourself.
 
 
-
 ## Q&A
 
+>>>>>>> e496e83b770e4d5e1f14b6d720a7dacc1cea1cc4
 1) I'm getting the error `COPY failed: file not found in build context or excluded by .dockerignore: stat license.txt: file does not exist`?
    - get your personal Freesurfer license (for free) at https://surfer.nmr.mgh.harvard.edu/registration.html and put it into the repository
 
@@ -90,4 +90,6 @@ If you have further questions, feel free to open an issue. Connecting the stand 
    - you can edit the smoothing and decimating parameters in the `post_process_mesh.py`. Simply remove the filters that you don't want to use such as decimation and smoothing.
 
 4) Wasn't there a version using WSL2 for windfows?
+<<<<<<< HEAD
    - The previous version of this README using WSL2 for Windows can be found [here](./README_wsl_version.md)
+
