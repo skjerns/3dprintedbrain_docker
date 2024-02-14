@@ -4,6 +4,19 @@
 ###############################################
 set -e  # exit on error
 
+# Default values
+smooth=100
+decimate=290000
+
+# Parse additional arguments
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        --smooth) smooth="$2"; shift ;;
+        --decimate) decimate="$2"; shift ;;
+        *) break ;;
+    esac
+    shift
+done
 
 export FSLOUTPUTTYPE=NIFTI_GZ
 # Main folder for the whole project
@@ -16,6 +29,8 @@ else
     echo "Error: File $1 not found in current directory or share/$1"
     exit 1
 fi
+
+echo "input file: $subjT1, postprocess: smooth=$smooth, decimate=$decimate"
 echo
 echo "-----------------------------------------------"
 echo "STARTING RECONSTRUCTION, CAN TAKE SEVERAL HOURS"
@@ -93,7 +108,7 @@ mris_convert $SUBJECTS_DIR/subcortical/subcortical $SUBJECTS_DIR/subcortical.stl
 
 # last, apply preprocessing by smoothing and combining the meshes
 # and decimating to 290.000 vertices (tinkercad limit is 300.000)
-python3 /opt/post_process_mesh.py $SUBJECTS_DIR
+python3 /opt/post_process_mesh.py $SUBJECTS_DIR --smooth $smooth --decimate $decimate
 
 cp $SUBJECTS_DIR/final.stl /opt/share/$subject.stl
 

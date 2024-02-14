@@ -51,13 +51,15 @@ This will run the script that automatically runs `recon-all` and extracts the br
 
 As a final result, there should be a `subject.stl` in your cloned repository folder which you can 3D print!
 
+If you do not want to apply smoothing or decimation of vertices and want the raw output, simply call
 
+`docker run -it -v ./:/opt/share 3dprintedbrain subject.nii --smooth 0 --decimate 0`
+
+Using these two parameters, you can indicate the amount the cerebellum is smoothed and the number of target vertices (e.g. TinkerCAD only accepts <300.000 vertices, which is the scripts default), or a percentage (e.g. 0.5 to decimate half the vertices).
 
 ### 4. Connect the brain to the stand.stl
 
 <img src="./md_assets/d0b4d2576c06abc6906e0ea98ce6b0b75e08e493.jpg" title="" alt="2021-09-11 09.13.41.jpg" width="244">
-
-
 
 I use small metal rods to connect the [stand](https://github.com/skjerns/3dprintyourbrain/blob/master/stand.stl) and the brain. Just find one in your local DIY store, 2mm is good. For a beginning you can also sacrifice a fork and break off a fork tine and use that as a connector. Then you can either drill holes for connection or model them directly into the 3D model. Just connecting it via PLA (3D print) will not work, as it's not stable enough. Neither can you print the entire thing at once, you need to print the stand and brain separately for stability.
 
@@ -67,28 +69,24 @@ Here's a video tutorial how to connect the stand to the brain using a 2x2x30 mm 
 
 [![IMAGE ALT TEXT HERE](./md_images/2024-02-10-23-19-40-image.png)](https://youtu.be/MwEE1EBLojE)
 
-
-
 ## 5\. Print the stand and brain
-
 
 So far I printed everything using http://treatstock.co.uk at 45% size, which is also the ratio the stand will fit nicely. Most brains will be around 7-8cm length when using 45% scaling. Cost for printing ranged from 10-30€, depending on the color and material (ie. wood is more expensive than PLA, so is translucent or glow-in-the-dark PLA. Cheapest is probably always gray or silver.)
 
 If you have further questions, feel free to open an issue. Connecting the stand to the brain is the most fidgety of all the steps in the guide and requires some trying out yourself.
 
-
 ## Q&A
 
 1) I'm getting the error `COPY failed: file not found in build context or excluded by .dockerignore: stat license.txt: file does not exist`?
+   
    - get your personal Freesurfer license (for free) at https://surfer.nmr.mgh.harvard.edu/registration.html and put it into the repository
 
 2) My file is ending in .nii.gz , how do I get the .nii file?
+   
    - you can simply use the .nii.gz file, no problem. it's just a zipped format of the .nii
 
 3) I don't want the mesh to be decimated that much / smoothed that much, I want the raw brain as it is reconstructed!
-   - you can edit the smoothing and decimating parameters in the `post_process_mesh.py`. Simply remove the filters that you don't want to use such as decimation and smoothing.
+   
+   - you can use the parameters `--smooth X` and `--decimate X` to indicate the number of smoothing steps and the target number of vertices or the percentage of decimation when calling the run command
 
-4) Wasn't there a version using WSL2 for windfows?
-<<<<<<< HEAD
-   - The previous version of this README using WSL2 for Windows can be found [here](./README_wsl_version.md)
-
+4) Wasn't there a version using WSL2 for windfows?The previous version of this README using WSL2 for Windows can be found [here](./README_wsl_version.md)
