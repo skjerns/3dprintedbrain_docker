@@ -5,32 +5,72 @@
 set -e  # exit on error
 
 # Default values
-smooth=100
+smooth=75
 decimate=290000
 
 # Parse additional arguments
+# Flag to check if the input file is set
+input_file_set=false
+
+# Collect input parameters
+params=()
 while [[ "$#" -gt 0 ]]; do
     case $1 in
-        --smooth) smooth="$2"; shift ;;
-        --decimate) decimate="$2"; shift ;;
-        *) break ;;
+        --smooth)
+            if [[ -n "$2" && "$2" =~ ^[0-9]+$ ]]; then
+                smooth="$2"
+                shift 2
+            else
+                echo "Error: --smooth expects a numeric argument."
+                exit 1
+            fi
+            ;;
+        --decimate)
+            if [[ -n "$2" && "$2" =~ ^[0-9]+$ ]]; then
+                decimate="$2"
+                shift 2
+            else
+                echo "Error: --decimate expects a numeric argument."
+                exit 1
+            fi
+            ;;
+        -*|--*)
+            echo "Error: Unknown option $1"
+            exit 1
+            ;;
+        *)
+            if $input_file_set; then
+                echo "Error: Multiple input files provided or unrecognized arguments."
+                exit 1
+            else
+                params+=("$1")
+                input_file_set=true
+                shift
+            fi
+            ;;
     esac
-    shift
 done
+
+# Reassign parsed positional arguments
+set -- "${params[@]}"
+
+if [ "$input_file_set" = false ]; then
+    echo "Error: No input file provided."
+    exit 1
+fi
 
 export FSLOUTPUTTYPE=NIFTI_GZ
 # Main folder for the whole project
 if [ -f "$1" ]; then
     subjT1="$1"
-# Else check if it exists in the 'share' subdirectory
 elif [ -f "/opt/share/$1" ]; then
     subjT1="/opt/share/$1"
 else
-    echo "Error: File $1 not found in current directory or share/$1"
+    echo "Error: File $1 not found in current directory or in /opt/share."
     exit 1
 fi
 
-echo "input file: $subjT1, postprocess: smooth=$smooth, decimate=$decimate"
+echo "input file: $subjT1, postprocess: smooth: $smooth, decimate: $decimate"
 echo
 echo "-----------------------------------------------"
 echo "STARTING RECONSTRUCTION, CAN TAKE SEVERAL HOURS"

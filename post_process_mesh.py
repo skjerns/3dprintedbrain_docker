@@ -14,11 +14,11 @@ args = parser.parse_args()
 
 ms = pymeshlab.MeshSet()
 
-print(f'loading lizard brain')
+print(f'loading cerebellum')
 ms.load_new_mesh(f'{args.input_folder}/subcortical.stl')
 
 if args.smooth and args.smooth != 0:
-    print(f'smoothing surfaces with {args.smooth} steps')
+    print(f'smoothing cerebellum with {args.smooth} steps')
     ms.apply_filter('scaledependent_laplacian_smooth', stepsmoothnum=args.smooth, 
     delta=pymeshlab.Percentage(0.1))
 else:

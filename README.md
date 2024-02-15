@@ -55,7 +55,7 @@ If you do not want to apply smoothing or decimation of vertices and want the raw
 
 `docker run -it -v ./:/opt/share 3dprintedbrain subject.nii --smooth 0 --decimate 0`
 
-**EDIT: THIS US CURRENTLY BUGGY, do it will not work**. Using these two parameters, you can indicate the amount the cerebellum is smoothed and the number of target vertices (e.g. TinkerCAD only accepts <300.000 vertices, which is the scripts default), or a percentage (e.g. 0.5 to decimate half the vertices).
+Using these two parameters, you can indicate the amount the cerebellum is smoothed and the number of target vertices (e.g. TinkerCAD only accepts <300.000 vertices, which is the scripts default), or a percentage (e.g. 0.5 to decimate half the vertices). Smoothing the cerebellum is highly recommended as it is very blocky/pixelated.
 
 ### 4. Connect the brain to the stand.stl
 

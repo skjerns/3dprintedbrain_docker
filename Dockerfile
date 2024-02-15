@@ -18,5 +18,6 @@ RUN ["chmod", "+x", "/opt/create_3d_brain_docker.sh"]
 
 # Define the entry point for your container
 ENTRYPOINT ["/opt/create_3d_brain_docker.sh"]
+CMD ["--smooth", "100", "--decimate", "290000"]
 
 
