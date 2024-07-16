@@ -6,6 +6,10 @@ COPY ./create_3d_brain_docker.sh /opt/create_3d_brain_docker.sh
 COPY ./post_process_mesh.py /opt/post_process_mesh.py
 COPY ./license.txt /usr/local/freesurfer/license.txt
 
+# add alternative mirror, fixes issue 1
+RUN sed -i -e "s|mirrorlist=|#mirrorlist=|g" /etc/yum.repos.d/CentOS-*
+RUN sed -i -e "s|#baseurl=http://mirror.centos.org|baseurl=http://vault.centos.org|g" /etc/yum.repos.d/CentOS-*
+
 # install python and PyMeshLab
 RUN yum install -y python3-pip
 RUN pip3 install pymeshlab==2021.10
