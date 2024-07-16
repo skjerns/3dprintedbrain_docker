@@ -16,6 +16,7 @@ docker run -it -v ./:/opt/share 3dprintedbrain subject.nii
 - [Docker](https://www.docker.com/products/docker-desktop/) client installed
 - Freesurfer license (it's [free](https://surfer.nmr.mgh.harvard.edu/registration.html))
 - [T1 MRI](https://en.wikipedia.org/wiki/Magnetic_resonance_imaging_of_the_brain) of your brain in NIFTI format (.nii or .nii.gz)
+   - you can convert DICOM files easily to NIFTI using [dcm2niigui](https://github.com/skjerns/3dprintedbrain_docker/tree/master/dcm2nii) or [dcm2niix](https://github.com/rordenlab/dcm2niix)
 
 # Instructions
 
