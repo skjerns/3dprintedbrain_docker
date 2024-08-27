@@ -44,9 +44,13 @@ Navigate into the newly cloned repository and build the docker image by running 
 
 Put your `subject.nii` or `subject.nii.gz` file into the cloned repository. If your data is in DICOM format, you can easily convert it using the provided [`dcm2niigui.exe` ](./dcm2niigui.exe) or [`dcm2niix`](https://www.google.com/search?q=dcm2niix) or any other [tool](https://www.google.com/search?q=convert+dicom+to+nifti). NIFTI files contain all the brain data of a participant in one file.
 
-Now simply run
+Navigate into the newly cloned repository and simply run (Linux & MacOS):
 
 `docker run -it -v ./:/opt/share 3dprintedbrain subject.nii`
+
+and for Windows:
+
+`docker run -it -v .\/:/opt/share 3dprintedbrain subject.nii`
 
 This will run the script that automatically runs `recon-all` and extracts the brain structures, then smoothes them and puts them into one `subject.stl`. This process will take a couple of hours usually.
 
