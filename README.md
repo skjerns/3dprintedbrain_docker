@@ -16,7 +16,7 @@ docker run -it -v ./:/opt/share 3dprintedbrain subject.nii
 - [Docker](https://www.docker.com/products/docker-desktop/) client installed
 - Freesurfer license (it's [free](https://surfer.nmr.mgh.harvard.edu/registration.html))
 - [T1 MRI](https://en.wikipedia.org/wiki/Magnetic_resonance_imaging_of_the_brain) of your brain in NIFTI format (.nii or .nii.gz)
-   - you can convert DICOM files easily to NIFTI using [dcm2niigui](https://github.com/skjerns/3dprintedbrain_docker/tree/master/dcm2nii) or [dcm2niix](https://github.com/rordenlab/dcm2niix)
+  - you can convert DICOM files easily to NIFTI using [dcm2niigui](https://github.com/skjerns/3dprintedbrain_docker/tree/master/dcm2nii) or [dcm2niix](https://github.com/rordenlab/dcm2niix)
 
 # Instructions
 
@@ -93,5 +93,7 @@ If you have further questions, feel free to open an issue. Connecting the stand 
 3) I don't want the mesh to be decimated that much / smoothed that much, I want the raw brain as it is reconstructed!
    
    - you can use the parameters `--smooth X` and `--decimate X` to indicate the number of smoothing steps and the target number of vertices or the percentage of decimation when calling the run command
+4- How can I change parameters given to `recon-all`?
+   - All parameters except smooth and decimate will be simply forwarded. You can e.g. call ``docker run -it -v ./:/opt/share 3dprintedbrain subject.nii -hires -openmp 4` to run the submillimeter option of freesurfer with 4 cores active.
 
-4) Wasn't there a version using WSL2 for windfows?The previous version of this README using WSL2 for Windows can be found [here](./README_wsl_version.md)
+5) Wasn't there a version using WSL2 for windfows?The previous version of this README using WSL2 for Windows can be found [here](./README_wsl_version.md)

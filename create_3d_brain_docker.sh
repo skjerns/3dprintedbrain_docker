@@ -12,8 +12,9 @@ decimate=290000
 # Flag to check if the input file is set
 input_file_set=false
 
-# Collect input parameters
+# Collect input parameters and additional recon-all parameters
 params=()
+recon_all_params=()
 while [[ "$#" -gt 0 ]]; do
     case $1 in
         --smooth)
@@ -34,9 +35,15 @@ while [[ "$#" -gt 0 ]]; do
                 exit 1
             fi
             ;;
-        -*|--*)
-            echo "Error: Unknown option $1"
-            exit 1
+        -*)
+            # Collect any other options as recon-all parameters
+            if [[ -n "$2" && ! "$2" =~ ^- ]]; then
+                recon_all_params+=("$1" "$2")
+                shift 2
+            else
+                recon_all_params+=("$1")
+                shift
+            fi
             ;;
         *)
             if $input_file_set; then
@@ -72,6 +79,8 @@ fi
 
 echo "input file: $subjT1, postprocess: smooth: $smooth, decimate: $decimate"
 echo
+echo "running process recon-all -subjid 'output' -all -time -log logfile -nuintensitycor -sd '$MAIN_DIR/${subject}/' -parallel '${recon_all_params[@]} "
+echo
 echo "-----------------------------------------------"
 echo "STARTING RECONSTRUCTION, CAN TAKE SEVERAL HOURS"
 echo "-----------------------------------------------"
@@ -90,13 +99,14 @@ export subject=$(echo "$subjT1" | rev | cut -f 1 -d '/' | rev | cut -f 1 -d '.')
 export SUBJECTS_DIR=$MAIN_DIR/${subject}/output
 
 #==========================================================================================
-#2. Create Surface Model with FreeSurfer
+# 2. Create Surface Model with FreeSurfer
 #==========================================================================================
 mkdir -p $MAIN_DIR/${subject}/
 mkdir -p $SUBJECTS_DIR/mri/orig
 mri_convert ${subjT1} $SUBJECTS_DIR/mri/orig/001.mgz
-recon-all -subjid "output" -all -time -log logfile -nuintensitycor-3T -sd "$MAIN_DIR/${subject}/" -parallel
 
+# Pass additional recon-all parameters
+recon-all -subjid "output" -all -time -log logfile -nuintensitycor -sd "$MAIN_DIR/${subject}/" -parallel "${recon_all_params[@]}"
 #==========================================================================================
 #3. Create 3D Model of Cortical and Subcortical Areas
 #==========================================================================================
