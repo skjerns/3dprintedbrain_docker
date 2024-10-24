@@ -32,7 +32,7 @@ Follow the instructions here to install Docker for your system (if not already i
 
 Clone this repository by running
 
-`git clone git@github.com:skjerns/3dprintedbrain_docker.git`
+`git clone https://github.com/skjerns/3dprintedbrain_docker.git`
 
 Then put your freesurfer license in the cloned repository. You can get the `license.txt` for free at [FreeSurfer Registration form](https://surfer.nmr.mgh.harvard.edu/registration.html).
 
