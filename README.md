@@ -1,5 +1,10 @@
 <img title="" src="md_assets/3a5b470407b7d8dcfb1e6cfee7a785ca425898a8.png" alt="2021-09-11 10.44.37.jpg" width="493" data-align="left">
 
+## update 2025
+
+There's now a new tool available that bypasses all the cumbersome steps and works locally in your browser using neural networks and WebAssembly: https://brain2print.org
+Props to Chris Rorden (https://github.com/niivue/brain2print) for the awesome work. I recommend using the tool instead of my Docker.
+
 # 3D print your brain using Docker
 
 A Docker image to create readily 3D-printable brains from T1 MRI scans. Just build the Docker image and run a command with your NIFTI file get a readily reconstructed STL mesh for 3D printing. This is an updated & extended version of [miykael/3dprintyourbrain](https://github.com/miykael/3dprintyourbrain).
